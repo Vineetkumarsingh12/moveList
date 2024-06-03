@@ -45,7 +45,7 @@ function App() {
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </div>
-      <footer className="bg-gray-800 text-white text-center p-4 mt-3 w-full  animate-pulse">
+      <footer className="bg-gray-800 text-white text-center p-4  w-full  animate-pulse">
         Made with ❤️ by <Link to="https://www.linkedin.com/in/vineet-singh-272614243/" className=" text-purple-400 "> Vineet</Link>
       </footer>
     </div>
