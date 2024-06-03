@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 const Login = ({setExist}) => {
 
 
-  console.log("Login1111111111111");
+ console.log(server);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const naviagte = useNavigate();
@@ -64,7 +64,7 @@ const Login = ({setExist}) => {
     try {
      
       const { data } = await axios.post(
-        `${server}/api/v1/auth/login`,
+        `${server}/auth/login`,
         {
           email:email,
           password: password.value,
