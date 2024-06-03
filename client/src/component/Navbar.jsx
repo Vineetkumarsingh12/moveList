@@ -59,12 +59,12 @@ const toastId = toast.loading("Logging Out...");
 
       {/* Search if logged in */}
       {exits && (
-        <div className="ml-4">
+        <div className="ml-4  w-[28%]">
           <form onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
               placeholder="Search"
-              className="p-2 rounded"
+              className="p-2 rounded w-full"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               
