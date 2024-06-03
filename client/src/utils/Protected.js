@@ -2,9 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-const Protected = ({Component}) => {
-     
-    const exits=Cookies.get('UPlay');
+const Protected = ({Component,exits}) => {
     const navigate=useNavigate();
     useEffect(() => {
         if(!exits){

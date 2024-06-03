@@ -75,7 +75,7 @@ const Login = ({setExist}) => {
      
     
       localStorage.setItem("UPlay", JSON.stringify(data.data));
-      setExist(true);
+      setExist(data.data);
      
     
       toast.success(data.message, {

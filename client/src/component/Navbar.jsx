@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assest/logo.gif';
 import {useNavigate} from 'react-router-dom';
@@ -10,10 +10,6 @@ import toast from 'react-hot-toast';
 const Navbar = ({exits,setExist}) => {
   
   const [search, setSearch] = useState("");
-  const [user,setUser]=useState(null);
-  useEffect(()=>{
-setUser(JSON.parse(localStorage.getItem('UPlay')))
-  },[]);
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
@@ -29,7 +25,7 @@ setUser(JSON.parse(localStorage.getItem('UPlay')))
 const toastId = toast.loading("Logging Out...");
     try{
   
-    const response = await fetch(`${server}/api/v1/auth/logout`, {
+    const response = await fetch(`${server}/auth/logout`, {
       method: "GET",
       credentials: "include",
     });
@@ -39,7 +35,7 @@ const toastId = toast.loading("Logging Out...");
       localStorage.removeItem("UPlay");
       console.log("Logout Successfully");
       toast.success("Logout Successfully");
-   setExist(null);
+   setExist(false);
       navigate('/login');
     }
 }
@@ -62,7 +58,7 @@ const toastId = toast.loading("Logging Out...");
       </div>
 
       {/* Search if logged in */}
-      {exits && user && (
+      {exits && (
         <div className="ml-4">
           <form onSubmit={(e) => e.preventDefault()}>
             <input
@@ -80,11 +76,11 @@ const toastId = toast.loading("Logging Out...");
 
       {/* Login/Signup/Name */}
       <div className="ml-auto flex items-center space-x-4">
-        {exits && user ? (
+        {exits ? (
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-4  bg-purple-900 p-2 rounded-md">
-            <img src={user.avatar.url} alt="profile"  className=' h-10 rounded'/>
-            <h3 className="text-white">{user.name}</h3>
+            <img src={exits.avatar.url} alt="profile"  className=' h-10 rounded'/>
+            <h3 className="text-white">{exits.name}</h3>
             </div>
             <button className="text-white" onClick={handLogout}>
               Logout

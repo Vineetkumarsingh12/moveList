@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-const PublicRoute = ({Component,setExist}) => {
-  const exits=Cookies.get('UPlay');
+const PublicRoute = ({Component,setExist,exits}) => {
   console.log("UPlay",exits);
     const navigate=useNavigate();
   useEffect(() => {

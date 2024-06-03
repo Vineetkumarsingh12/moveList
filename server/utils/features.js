@@ -2,14 +2,20 @@ import mongoose from "mongoose";
 import { v4 as uuid } from "uuid";
 import { v2 as cloudinary } from "cloudinary";
 import { getBase64 } from "./helper.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+const isProduction = process.env.NODE_ENV === "production";
 
 const cookieOptions = {
-  maxAge: 1 * 24 * 60 * 60 * 1000,
-  sameSite: "none",
+  maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+  sameSite: isProduction ? "none" : "lax", // Use "none" for cross-site cookies in production, "lax" for local development
   httpOnly: true,
-  // secure:true,
+  secure: isProduction, // Secure flag true in production, false in development
   path: "/",
 };
+
+
 
 const connectDB = (uri) => {
   mongoose

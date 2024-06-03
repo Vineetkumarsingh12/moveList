@@ -16,7 +16,11 @@ const isAuthenticated = async(req, res, next) => {
 
   next();
     }catch(err){
-        return res.status(500).json({success:false,message:"Something went wrong"});
+
+        // redirect
+        console.log(err);
+    //  return res.redirect("https://move-list.vercel.app/login");
+    return res.redirect("http://localhost:3000/login");
     }
 };
 

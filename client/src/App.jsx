@@ -7,18 +7,20 @@ import Serach from "./component/Serach";
 
 import Protected from "./utils/Protected";
 import PublicRoute from "./utils/PublicRoute";
-import Cookies from 'js-cookie';
-import { useEffect, useState } from "react";
+
+import {  useEffect, useState } from "react";
 import AddInList from "./component/AddInList";
 import AllList from "./component/AllList";
 import ShowList from "./component/ShowList";
 
 function App() {
-  const [exits, setExist] = useState(null);
-
+  const [exits, setExist] = useState(false);
   useEffect(() => {
-    setExist(Cookies.get('UPlay'));
-  }, []);
+    if (!exits) {
+      setExist(JSON.parse(localStorage.getItem("UPlay")));
+    }
+  }, []); 
+
 
   console.log("in app", exits);
 
@@ -33,13 +35,13 @@ function App() {
       </Link>
       <div className="flex-grow">
         <Routes>
-          <Route path="/" element={<Protected Component={Serach} />} />
-          <Route path="/login" element={<PublicRoute Component={Login} setExist={setExist} />} />
-          <Route path="/video/:id" element={<Protected Component={Uvideo} />} />
-          <Route path="/serach/:serachKey" element={<Protected Component={Serach} />} />
-          <Route path="/add/:id" element={<Protected Component={AddInList} />} />
-          <Route path="/list" element={<Protected Component={AllList} />} />
-          <Route path="/list/:id" element={<Protected Component={ShowList} />} />
+          <Route path="/" element={<Protected Component={Serach} exits={exits} />} />
+          <Route path="/login" element={<PublicRoute Component={Login} setExist={setExist}  exits={exits}/>} />
+          <Route path="/video/:id" element={<Protected Component={Uvideo} exits={exits} />} />
+          <Route path="/serach/:serachKey" element={<Protected Component={Serach} exits={exits} />} />
+          <Route path="/add/:id" element={<Protected Component={AddInList}  exits={exits}/>} />
+          <Route path="/list" element={<Protected Component={AllList}  exits={exits}/>} />
+          <Route path="/list/:id" element={<Protected Component={ShowList}  exits={exits}/>} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </div>
