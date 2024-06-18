@@ -7,6 +7,9 @@ const isAuthenticated = async(req, res, next) => {
   const token = req.cookies["UPlay"];
   console.log("*********",token);
 
+        if(!token){
+           return  res.redirect("https://move-list.vercel.app/login");
+        }
 
   const decodedData = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -19,8 +22,8 @@ const isAuthenticated = async(req, res, next) => {
 
         // redirect
         console.log(err);
-    //  return res.redirect("https://move-list.vercel.app/login");
-    return res.redirect("http://localhost:3000/login");
+     return res.redirect("https://move-list.vercel.app/login");
+    // return res.redirect("http://localhost:3000/login");
     }
 };
 
