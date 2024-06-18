@@ -109,12 +109,12 @@ const Login = ({setExist}) => {
     
    const toastId = toast.loading("Signing Up...");
    try{
-    const { data } = await axios.post(`${server}/api/v1/auth/signup`, formData);
+    const { data } = await axios.post(`${server}/auth/signup`, formData);
     console.log(data);
     toast.success(data.message, {
       id: toastId,
     });
-    naviagte("/login");
+    naviagte("/");
    }catch(e){
       console.log(e);
     toast.error(e?.response?.data?.message || "Something Went Wrong", {
